@@ -1,0 +1,176 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Certify",
+    "description": "Nodejs API"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/user/register": {
+      "post": {
+        "description": "Create new user in system",
+        "tags": [
+          "User API"
+        ],
+        "parameters": [
+          {
+            "name": "Sign Up",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "properties": {
+                "firstName": {
+                  "type": "string"
+                },
+                "middleName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "aadharNumber": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New member is created"
+          },
+          "204": {
+            "description": "Passwords don't match."
+          },
+          "500": {
+            "description": "Some unseen error has happened."
+          }
+        }
+      }
+    },
+    "/api/user/login": {
+      "post": {
+        "description": "Create new user in system",
+        "tags": [
+          "User API"
+        ],
+        "parameters": [
+          {
+            "name": "Sign Up",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New member is created"
+          },
+          "204": {
+            "description": "Passwords don't match."
+          },
+          "500": {
+            "description": "Some unseen error has happened."
+          }
+        }
+      }
+    },
+    "/api/user/passport": {
+      "post": {
+        "description": "Send Connection Did Request",
+        "tags": [
+          "User API"
+        ],
+        "parameters": [
+          {
+            "name": "authorization",
+            "description": "An authorization header",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "Sign Up",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "properties": {
+                "DOB": {
+                  "type": "string",
+                  "format": "date"
+                },
+                "bloodGroup": {
+                  "type": "string"
+                },
+                "sex": {
+                  "type": "string"
+                },
+                "nationality": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "object",
+                  "example": {
+                    "houseName": "string",
+                    "streetName": "string",
+                    "postOffice": "string",
+                    "district": "string",
+                    "state": "string",
+                    "pin": "string"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New member is created"
+          },
+          "204": {
+            "description": "Passwords don't match."
+          },
+          "500": {
+            "description": "Some unseen error has happened."
+          }
+        }
+      }
+    }
+  }
+}

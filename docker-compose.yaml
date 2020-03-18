@@ -1,0 +1,24 @@
+version: "2"
+services:
+  app:
+    container_name: app
+    restart: always
+    build: .
+    image: sql_app
+    ports:
+      - 4200:4200
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - postgresql
+  postgresql:
+    container_name: postgresql
+    image: postgres
+    environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=test123
+        - POSTGRES_DB=certify
+    volumes:
+      - ./database-data:/usr/src/app/data/db
+    ports:
+      - 5432:5432
