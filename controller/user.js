@@ -1,12 +1,12 @@
 'use strict';
-const User = require('../model/user');
+const user = require('../model/user');
 const jwt = require('jsonwebtoken');
 const config = require('../config/index');
 const passport = require('../model/passport');
 const md5 = require('md5');
 exports.register = async (body) => {
     return new Promise((resolve, reject) => {
-        User.create({
+        user.create({
             firstName: body.firstName,
             middleName: body.middleName,
             lastName: body.lastName,
@@ -23,7 +23,7 @@ exports.register = async (body) => {
 
 exports.login = async (body) => {
     return new Promise((resolve, reject) => {
-        User.findAll({where:{email:body.email}}).then((result) => {
+        user.findAll({where:{email:body.email}}).then((result) => {
             console.log('sda');
             console.log();
             if(result.length !== 0){
@@ -50,7 +50,7 @@ exports.login = async (body) => {
     });
 };
 
-exports.applyPassport = async (body,decode) => {
+exports.applyPassport = async (body,decode,path) => {
     return new Promise ((resolve,reject) => {
         passport.create({
             firstName: decode.firstName,
@@ -61,6 +61,7 @@ exports.applyPassport = async (body,decode) => {
             bloodGroup: body.bloodGroup,
             sex: body.sex,
             nationality: body.nationality,
+            userImagePath: path,
             address: body.address
         }).then(result => {
             resolve(result.dataValues);
@@ -69,3 +70,19 @@ exports.applyPassport = async (body,decode) => {
         });
     });
 };
+
+exports.getPassport = async (id) => {
+    return new Promise((resolve,reject) => {
+        passport.findByPk(id).then(result => {
+            if(result.length !== 0){
+                resolve(result.dataValues);
+            }
+            else{
+                throw new Error('No such application');
+            }
+        }).catch(error => {
+            reject(error);
+        });
+    });
+};
+

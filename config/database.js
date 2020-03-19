@@ -1,7 +1,7 @@
 'use strict';
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('certify', 'postgres', 'test123', {
-    host: 'localhost',
+const sequelize = new Sequelize('passlinks', 'postgres', 'test123', {
+    host: 'postgresql',
     dialect:  'postgres'
 });
 

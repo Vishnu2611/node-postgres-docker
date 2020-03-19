@@ -1,173 +1,201 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
-    "version": "1.0.0",
-    "title": "Certify",
-    "description": "Nodejs API"
+    "title": "Passlinks",
+    "description": "About Project",
+    "version": "0.0.1"
   },
-  "host": "localhost:3000",
-  "basePath": "/",
-  "schemes": [
-    "http",
-    "https"
+  "servers": [
+    {
+      "url": "http://localhost:4200",
+      "description": "Nodejs Server"
+    }
   ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
   "paths": {
     "/api/user/register": {
       "post": {
-        "description": "Create new user in system",
+        "summary": "Registers a user.",
         "tags": [
-          "User API"
+          "User"
         ],
-        "parameters": [
-          {
-            "name": "Sign Up",
-            "in": "body",
-            "description": "User that we want to create",
-            "schema": {
-              "properties": {
-                "firstName": {
-                  "type": "string"
-                },
-                "middleName": {
-                  "type": "string"
-                },
-                "lastName": {
-                  "type": "string"
-                },
-                "aadharNumber": {
-                  "type": "string"
-                },
-                "email": {
-                  "type": "string"
-                },
-                "password": {
-                  "type": "string"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "middleName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "aadharNumber": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
                 }
               }
             }
           }
-        ],
-        "produces": [
-          "application/json"
-        ],
+        },
         "responses": {
           "200": {
-            "description": "New member is created"
-          },
-          "204": {
-            "description": "Passwords don't match."
+            "description": "User created"
           },
           "500": {
-            "description": "Some unseen error has happened."
+            "description": "User created"
           }
         }
       }
     },
     "/api/user/login": {
       "post": {
-        "description": "Create new user in system",
+        "summary": "User login.",
         "tags": [
-          "User API"
+          "User"
         ],
-        "parameters": [
-          {
-            "name": "Sign Up",
-            "in": "body",
-            "description": "User that we want to create",
-            "schema": {
-              "properties": {
-                "email": {
-                  "type": "string"
-                },
-                "password": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "New member is created"
-          },
-          "204": {
-            "description": "Passwords don't match."
-          },
-          "500": {
-            "description": "Some unseen error has happened."
-          }
-        }
-      }
-    },
-    "/api/user/passport": {
-      "post": {
-        "description": "Send Connection Did Request",
-        "tags": [
-          "User API"
-        ],
-        "parameters": [
-          {
-            "name": "authorization",
-            "description": "An authorization header",
-            "in": "header",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "Sign Up",
-            "in": "body",
-            "description": "User that we want to create",
-            "schema": {
-              "properties": {
-                "DOB": {
-                  "type": "string",
-                  "format": "date"
-                },
-                "bloodGroup": {
-                  "type": "string"
-                },
-                "sex": {
-                  "type": "string"
-                },
-                "nationality": {
-                  "type": "string"
-                },
-                "address": {
-                  "type": "object",
-                  "example": {
-                    "houseName": "string",
-                    "streetName": "string",
-                    "postOffice": "string",
-                    "district": "string",
-                    "state": "string",
-                    "pin": "string"
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
                   }
                 }
               }
             }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "User login success"
+          },
+          "500": {
+            "description": "User login failed"
+          }
+        }
+      }
+    },
+    "/api/user/passportApplication": {
+      "post": {
+        "summary": "User applies for passport.",
+        "security": [
+          {
+            "BearerAuth": []
+          }
         ],
-        "produces": [
-          "application/json"
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "DOB": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "bloodGroup": {
+                    "type": "string",
+                    "enum": [
+                      "O-",
+                      "O+",
+                      "A-",
+                      "A+",
+                      "B-",
+                      "B+",
+                      "AB-",
+                      "AB+"
+                    ]
+                  },
+                  "sex": {
+                    "type": "string"
+                  },
+                  "nationality": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "object",
+                    "example": {
+                      "houseName": "string",
+                      "streetName": "string",
+                      "postOffice": "string",
+                      "district": "string",
+                      "state": "string",
+                      "pin": "string"
+                    }
+                  },
+                  "userImage": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Passport application submitted successfully"
+          },
+          "500": {
+            "description": "Passport application failed"
+          }
+        }
+      }
+    },
+    "/api/user/passport": {
+      "get": {
+        "summary": "User applies for passport.",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "tags": [
+          "User"
         ],
         "responses": {
           "200": {
-            "description": "New member is created"
-          },
-          "204": {
-            "description": "Passwords don't match."
+            "description": "Passport retrieval successfull",
+            "content": {
+              "application/pdf": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
           },
           "500": {
-            "description": "Some unseen error has happened."
+            "description": "Passport retrieval failed"
           }
         }
       }

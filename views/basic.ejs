@@ -1,0 +1,29 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<center><h2>Certifcate</h2></center>
+<div class="card" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); margin: auto; transition: 0.3s; width: 40%; hover: box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);">
+  <div class="container" style="padding: 2px 16px;">
+<center><img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=<?php echo($codeContents)&choe=UTF-8"></center>
+<center><img src="pp.jpeg"alt=height="150" width="150"></center>
+<div align="center">
+      Certified  that,<br>
+	 Mr/Mrs <b> <%- name.name %> </b>
+	<br>has passed the Degree of<br>
+	<b> <%- name.Degree %>Degree </b>
+	<br>in<br>
+	<b> <%- Course %> </b>
+<br>Enrollment Number: <%- name.Eno %>
+<br>Year of Passing: <%- name.YOP %>
+<br>College of Study: <%- name.COS %>
+<br>CGPA: <%- name.CGPA %>
+<br>Certificate Id: <%- name.cid %>
+</div>
+  </div>
+</div>
+<br><br>
+</div>
+</body>
+</html>

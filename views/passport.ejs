@@ -1,0 +1,174 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+    <style type="text/css" rel="stylesheet" media="all">
+      /* Base ------------------------------ */
+  * {
+     box-sizing: border-box;
+  }
+  
+  :root {
+     --background: white;
+  
+     --primary: #ff1ead;
+     --secondary: #1effc3;
+     
+     --card-size: 300px;
+  }
+  
+  body {
+     height: 100vh;
+     margin: 0;
+     display: grid;
+     place-items: center;
+     padding: 1rem;
+     background: var(--background);
+     font-family: 'Source Code Pro', monospace;
+     
+     text-rendering: optimizelegibility;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .card { 
+     width: calc(var(--card-size) * 1.586);
+     height: var(--card-size);
+     
+     border-radius: 0.75rem;
+     box-shadow:  0 22px 70px 4px rgba(0,0,0,0.56), 0 0 0 1px rgba(0, 0, 0, 0.3);
+     
+     background: black;
+     
+     display: grid;
+     grid-template-columns: 40% auto;
+     color: white;
+     
+     align-items: center;
+     
+     will-change: transform;
+     transition: transform 0.25s cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
+     
+     &:hover {
+        transform: scale(1.1);
+        box-shadow:  0 32px 80px 14px rgba(0,0,0,0.36), 0 0 0 1px rgba(0, 0, 0, 0.3);
+     }
+  }
+  
+  .card-details {
+     padding: 1rem;
+  }
+  
+  .name {
+     font-size: 1.25rem;
+  }
+  
+  .occupation {
+     font-weight: 600;
+     color: var(--primary);
+  }
+  
+  .card-avatar {
+     display: grid;
+     place-items: center;
+  }
+  
+  svg {
+     fill: white;
+     width: 65%;
+  }
+  
+  .card-about {
+     margin-top: 1rem;
+     display: grid;
+     grid-auto-flow: column;
+  }
+  
+  .item {
+     display: flex;
+     flex-direction: column;
+     margin-bottom: 0.5rem;
+     
+     .value {
+        font-size: 1rem;
+     }
+     
+     .label {
+        margin-top: 0.15rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--primary);
+     }
+  }
+  
+  .skills {
+     display: flex;
+     flex-direction: column;
+     margin-top: 0.75rem;
+     .label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--primary);
+     }
+     .value {
+        margin-top: 0.15rem;
+        font-size: 0.75rem;
+        line-height: 1.25rem;
+     }
+  }
+      </style>
+      <!--[if mso]>
+      <style type="text/css">
+        .f-fallback  {
+          font-family: Arial, sans-serif;
+        }
+      </style>
+    <![endif]-->
+    </head>
+    <body>
+<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500" rel="stylesheet">
+
+<div class="card">
+   <div class="card-avatar">
+    <div class="occupation">
+        <h1><center><b>Passport</b></center></h1>
+    </div>
+    <div class="name">
+        <center><img src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=http://localhost:4200/verifyPassport&choe=UTF-8"></center>
+    </div>
+   </div>
+   <div class="card-details">
+      <div class="name"><%= passportDetails.firstName %> <%= passportDetails.middleName %> <%= passportDetails.lastName %></div>
+      <div class="occupation">Full Name</div>
+      <div class="card-about"></div>
+         <div class="item">
+          <div class="name"><%= passportDetails.DOB %></div>
+          <div class="occupation">Date of Birth</div>
+             </div>
+         <div class="item">
+          <div class="name"><%= passportDetails.aadharNumber %></div>
+          <div class="occupation">Aadhar Number</div>
+         </div>
+         <div class="item">
+          <div class="name"><%= passportDetails.bloodGroup %></div>
+          <div class="occupation">Blood Group</div>
+         </div>
+         <div class="item">
+          <div class="name"><%= passportDetails.sex %></div>
+          <div class="occupation">Sex</div>
+         </div>
+         <div class="item">
+          <div class="name"><%= passportDetails.nationality %></div>
+          <div class="occupation">Nationality</div>
+         </div>
+         <div class="item">
+          <div class="name"><%= JSON.parse(passportDetails.address).houseName %> <%= JSON.parse(passportDetails.address).streetName %> <%= JSON.parse(passportDetails.address).district%> <%= JSON.parse(passportDetails.address).state %></div>
+          <div class="occupation">Address</div>
+         </div>
+      </div>
+   </div>
+</div>
+  </body>
+</html>

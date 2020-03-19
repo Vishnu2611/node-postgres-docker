@@ -3,7 +3,8 @@ const Sequelize = require('sequelize');
 const user = require('./user');
 const sequelize = require('../config/database');
 
-const Passport = sequelize.define('passport',{
+
+const Passport = sequelize.define('passportApplication',{
     id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -55,6 +56,23 @@ const Passport = sequelize.define('passport',{
     address: {
         type: Sequelize.JSON,
         allowNull: false,
+    },
+    status: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 0
+    },
+    userImagePath: {
+        type: Sequelize.TEXT,
+        allowNull: false
+    },
+    expiryTime: {
+        type: Sequelize.DATE,
+        allowNull: true,
+        defaultValue: null
     }
 });
+
+// Passport.belongsTo(user);
+
 module.exports = Passport;

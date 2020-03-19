@@ -1,0 +1,107 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title></title>
+    <style type="text/css" rel="stylesheet" media="all">
+    /* Base ------------------------------ */
+@import url('https://fonts.googleapis.com/css?family=Abel');
+
+html, body {
+  background: rgb(255, 255, 255);
+  font-family: Abel, Arial, Verdana, sans-serif;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.card {
+  width: 500px;
+  height: 400px;
+  background-color: #fff;
+  background: linear-gradient(#81a2ce, rgb(83, 141, 165));
+  box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  margin: 1.5rem;
+}
+
+.card h1 {
+  text-align: center;
+}
+
+.card .additional {
+  position: absolute;
+  width: 150px;
+  height: 100%;
+  background: linear-gradient(rgb(255, 255, 255), rgb(255, 255, 255));
+  transition: width 0.4s;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.card .additional .user-card {
+  width: 150px;
+  height: 100%;
+  position: relative;
+  float: left;
+}
+
+.card .general {
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 1rem;
+  padding-top: 0;
+}
+
+.card .general .more {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 0.9em;
+}
+    </style>
+  </head>
+  <body>
+<div class="center">
+
+  <div class="card">
+    <div class="additional">
+      <div class="user-card">
+        <center>Verify</center>
+        <center><img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=Name:<%= students.name %>,Degree: <%=students.Degree%>Course: <%=students.Course%>Enrollment Number: <%=students.Eno%>Year of Passing: <%=students.YOP%>College of Study: <%=students.COP%>CGPA: <%= students.CGPA%>Certtificate: <%=students.cid %>&choe=UTF-8"></center>
+        <center><img src="<%= students.url %>"alt=height="150" width="150"></center>
+      </div>
+    </div>
+    <div class="general">
+      <h1><%= students.name %></h1>
+      <div align="center">
+        <!-- Certified  that,<br>
+       Mr/Mrs <b> <%= students.name %> </b>
+      <br>has passed the Degree of<br>
+      <b> <%= students.Degree %>Degree </b>
+      <br>in<br>
+      <b> <%= students.Course %> </b>
+  <br>Enrollment Number: <%= students.Eno %>
+  <br>Year of Passing: <%= students.YOP %>
+  <br>College of Study: <%= students.COS %>
+  <br>CGPA: <%= students.CGPA %>
+  <br>Certificate Id: <%= students.cid %> -->
+  </div>
+      </div>
+  </div>
+
+
+</div>
+  </body>
+</html>
